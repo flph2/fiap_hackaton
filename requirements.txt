@@ -2,3 +2,4 @@ sklearn
 pandas
 seaborn
 matplotlib
+jupyter
