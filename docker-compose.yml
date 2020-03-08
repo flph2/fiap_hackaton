@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile-api
+    container_name: api
+    restart: always
+    tty: true
+    ports:
+      - "8000:8000"
+    networks:
+      - mysql-network
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_DATABASE: "invest"
+    tty: true
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql-network
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+
+
+
+networks: 
+  mysql-network:
+    driver: bridge
+

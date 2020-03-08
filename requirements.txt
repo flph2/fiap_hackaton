@@ -1,5 +1,8 @@
 sklearn
 pandas
+django
+djangorestframework
+pyzabbix
 seaborn
 matplotlib
-jupyter
+mysqlclient

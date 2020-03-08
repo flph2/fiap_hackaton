@@ -1,0 +1,79 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from __future__ import absolute_import
+
+# Create your models here.
+from django.db import models
+
+
+class Perguntas(models.Model):
+    """
+    Model para armazenar os dados referentes ao perfil
+    do usuario e as perguntas respondidas durante
+    o cadastro
+    """
+    'Id',
+    'Idade',
+    'EstadoCivil',
+    'BillingCity',
+    'NivelConhecimentoAtual',
+    'ScoreNivelConhecimento',
+    'PerfilInvestidor',
+    'RendaMensal',
+    'ValorPatrimonio',
+    'Pergunta1',
+    'Resposta11',
+    'Pergunta2',
+    'Resposta21',
+    'Pergunta3',
+    'Resposta31',
+    'Pergunta4',
+    'Resposta41',
+    'Pergunta5',
+    'Resposta51',
+    'Resposta52',
+    'Resposta53',
+    'Resposta54',
+    'Resposta55',
+    'Resposta56',
+    'Resposta57',
+    'Resposta58',
+    'Pergunta6',
+    'Resposta61',
+    'Resposta62',
+    'Resposta63',
+    'Resposta64',
+    'Resposta65',
+    'Resposta66',
+    'Resposta67',
+    'Resposta68',
+    'Pergunta7',
+    'Resposta71',
+    'Resposta72',
+    'Resposta73',
+    'Resposta74',
+    'Resposta75',
+    'Pergunta8',
+    'Resposta81',
+    'Pergunta9',
+    'Resposta91',
+    'ScoreRisco',
+    'ScoreObjetivos',
+    'ScoreSituacaoFinanceira',
+    'Produto',
+    'NomeDoProduto',
+    'NomeEmissor',
+    'TaxaCliente',
+    'TaxaPreCliente',
+    'DescricaoProduto',
+    'ValorMinimoAplicaInicial',
+    'ValorMinimoAplicacaoAdicional',
+    'DataVencimento',
+    'FamiliaCarteira',
+    'ValorInvestidoAtual',
+    'ValorRendimento',
+    'Rentabilidade12Meses',
+    'RentabilidadeMes',
+    'RiscoAtivo',
+    'Status',
+    'ProdutoId'

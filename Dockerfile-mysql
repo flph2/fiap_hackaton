@@ -1,0 +1,5 @@
+FROM mysql:latest
+WORKDIR /root
+RUN mkdir -p /root/scripts
+COPY scripts/ /root/scripts
+CMD bash
