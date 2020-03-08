@@ -16,7 +16,9 @@ docker-compose up -d --build
 ```
 
 Com isso teremos 2 serviços disponiveis
+
 App django - API -  http://localhost:8000
+
 Mysql database - localhost:3306
 
 ### Parando o ambiente
