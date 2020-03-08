@@ -1,4 +1,4 @@
-version: '3.3'
+version: '2.1'
 services:
   api:
     build:
@@ -12,7 +12,8 @@ services:
     networks:
       - mysql-network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     container_name: db
@@ -26,9 +27,10 @@ services:
     networks:
       - mysql-network
     healthcheck:
-        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-        timeout: 20s
-        retries: 10
+        test: ["CMD-SHELL", "mysqladmin ping -h localhost -p123"]
+        interval: 2s
+        timeout: 5s
+        retries: 2
 
 
 
