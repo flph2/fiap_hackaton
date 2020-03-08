@@ -11,3 +11,23 @@ class PerfilSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Perfil
         fields = "__all__"
+
+
+class PagePathSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer do model Perfil
+    """
+    class Meta:
+        model = models.PagePath
+        fields = "__all__"
+
+
+class ProductCatalogSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer do model Perfil
+    """
+    class Meta:
+        model = models.ProductCatalog
+        fields = "__all__"
+
+

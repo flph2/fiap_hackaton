@@ -4,7 +4,9 @@ from rest_framework import routers
 from invest import views
 
 router = routers.DefaultRouter()
-router.register(r'perfil', views.PerfilViewSet)
+router.register(r'profile', views.PerfilViewSet)
+router.register(r'page-path', views.PagePathViewSet)
+router.register(r'product-catalog', views.ProductCatalogViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

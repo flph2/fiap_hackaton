@@ -13,3 +13,23 @@ class PerfilViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Perfil.objects.all()
     serializer_class = serializers.PerfilSerializer
+
+
+class PagePathViewSet(viewsets.ModelViewSet):
+    """
+    Metodo de api para exibir todos os
+    dados de perfil de usuario existentes
+    no dataset 1
+    """
+    queryset = models.PagePath.objects.all()
+    serializer_class = serializers.PagePathSerializer
+
+
+class ProductCatalogViewSet(viewsets.ModelViewSet):
+    """
+    Metodo de api para exibir todos os
+    dados de perfil de usuario existentes
+    no dataset 1
+    """
+    queryset = models.ProductCatalog.objects.all()
+    serializer_class = serializers.ProductCatalogSerializer
