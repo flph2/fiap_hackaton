@@ -29,5 +29,3 @@ class ProductCatalogSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.ProductCatalog
         fields = "__all__"
-
-
