@@ -30,7 +30,7 @@ services:
         test: ["CMD-SHELL", "mysqladmin ping -h localhost -p123"]
         interval: 2s
         timeout: 5s
-        retries: 2
+        retries: 5
 
 
 

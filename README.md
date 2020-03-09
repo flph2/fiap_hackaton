@@ -21,6 +21,11 @@ App django - API -  http://localhost:8000
 
 Mysql database - localhost:3306
 
+### Populando os dados
+```
+docker exec -ti api scripts/populate.sh
+```
+
 ### Parando o ambiente
 Para finalizar os containers digite:
 ```
