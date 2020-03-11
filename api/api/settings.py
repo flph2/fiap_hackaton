@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100000
+    'PAGE_SIZE': 100
 }
 
 # Database
@@ -90,7 +90,7 @@ DATABASES = {
         'OPTIONS': {
             'charset': 'latin1',
             'sql_mode': 'traditional',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', character_set_client=latin1, character_set_results=latin1, character_set_connection=latin1, collation_connection=latin1_swedish_ci",
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', character_set_client=latin1, character_set_results=latin1, character_set_connection=latin1, collation_connection=latin1_swedish_ci; SET SESSION FOREIGN_KEY_CHECKS=0;SET UNIQUE_CHECKS=0;",
         },
     }
 }

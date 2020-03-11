@@ -1,6 +1,0 @@
-/usr/local/lib/python3.6/site-packages/django/core/management/base.py:328: DtypeWarning: Columns (62) have mixed types.Specify dtype option on import or set low_memory=False.
-  self.execute(*args, **cmd_options)
-
-
-
-

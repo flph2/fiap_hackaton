@@ -87,7 +87,7 @@ class PagePath(models.Model):
     """
     dataId = models.CharField(max_length=100)
     customerId = models.CharField(max_length=100)
-    pagePath = models.CharField(max_length=100)
+    pagePath = models.CharField(max_length=255)
     pageView = models.CharField(max_length=100)
 
 
