@@ -21,6 +21,15 @@ App django - API -  http://localhost:8000
 
 Mysql database - localhost:3306
 
+### Acessando pyspark
+
+```
+docker logs spark
+```
+copiar o token e acessar a url http://localhost:8888 e inserir o token na url
+
+Codigo temporario para utilizar pyspark (spark.py dentro do repo git), copiar no jupyter notebook
+
 ### Populando os dados
 ```
 docker exec -ti api scripts/populate.sh
