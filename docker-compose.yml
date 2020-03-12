@@ -31,8 +31,15 @@ services:
         interval: 2s
         timeout: 5s
         retries: 5
-
-
+  spark:
+    container_name: spark
+    image: jupyter/all-spark-notebook:latest
+    tty: true
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    networks:
+      - mysql-network
 
 networks: 
   mysql-network:
