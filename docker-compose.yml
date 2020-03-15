@@ -1,23 +1,9 @@
 version: '2.1'
 services:
-  api:
-    build:
-      context: ./
-      dockerfile: Dockerfile-api
-    container_name: api
-    restart: always
-    tty: true
-    ports:
-      - "8000:8000"
-    networks:
-      - mysql-network
-    depends_on:
-      db:
-        condition: service_healthy
-
   db:
     container_name: db
     image: mysql:5.7
+    command: --wait-timeout=28800 --max_allowed_packet=1073741824
     environment:
       MYSQL_ROOT_PASSWORD: "123"
       MYSQL_DATABASE: "invest"
@@ -31,6 +17,9 @@ services:
         interval: 2s
         timeout: 5s
         retries: 5
+    volumes:
+      - ./data:/root/data/
+      - ./dump:/docker-entrypoint-initdb.d/
   spark:
     container_name: spark
     image: jupyter/all-spark-notebook:latest
