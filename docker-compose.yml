@@ -29,6 +29,8 @@ services:
       - "4040:4040"
     networks:
       - mysql-network
+    volumes:
+      - ./notebooks:/home/jovyan/
 
 networks: 
   mysql-network:
