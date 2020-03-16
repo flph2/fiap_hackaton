@@ -1,1 +1,3 @@
 *.pyc
+notebooks/.local/*
+notebooks/.cache/*
