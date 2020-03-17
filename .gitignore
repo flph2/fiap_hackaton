@@ -1,3 +1,4 @@
 *.pyc
 notebooks/.local/*
 notebooks/.cache/*
+notebooks/.ipynb_checkpoints/*
