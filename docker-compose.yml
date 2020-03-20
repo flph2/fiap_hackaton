@@ -1,4 +1,7 @@
 version: '2.1'
+networks:
+  mysql-network:
+
 services:
   db:
     container_name: db
@@ -31,6 +34,14 @@ services:
       - mysql-network
     volumes:
       - ./notebooks:/home/jovyan/
-
-networks: 
-  mysql-network:
+  api:
+    container_name: api
+    build:
+      context: ./
+      dockerfile: Dockerfile-api
+    ports:
+      - "8000:8000"
+    networks:
+      - mysql-network
+    depends_on:
+      - "db"

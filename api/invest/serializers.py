@@ -4,28 +4,18 @@ from rest_framework import serializers
 from invest import models
 
 
-class PerfilSerializer(serializers.HyperlinkedModelSerializer):
+class PredictSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Serializer do model Perfil
+    Serializer do model Predict
     """
     class Meta:
-        model = models.Perfil
+        model = models.Predict
         fields = "__all__"
 
 
-class PagePathSerializer(serializers.HyperlinkedModelSerializer):
+class ResultSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Serializer do model Perfil
-    """
-    class Meta:
-        model = models.PagePath
-        fields = "__all__"
-
-
-class ProductCatalogSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    Serializer do model Perfil
     """
     class Meta:
-        model = models.ProductCatalog
+        model = models.Result
         fields = "__all__"

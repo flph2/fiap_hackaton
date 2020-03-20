@@ -1,183 +1,42 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from __future__ import absolute_import
-
-# Create your models here.
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from invest.tasks import dataPredict
 
 
-class Perfil(models.Model):
+class Predict(models.Model):
     """
-    Model para armazenar os dados referentes ao perfil
-    do usuario e as perguntas respondidas durante
-    o cadastro
+    Model utilizado para predizer os investimentos
+    do usuario
     """
     dataId = models.CharField(max_length=100)
     ClienteId = models.CharField(max_length=100)
     Idade = models.CharField(max_length=100)
     EstadoCivil = models.CharField(max_length=100)
-    BillingCity = models.CharField(max_length=100)
-    NivelConhecimentoAtual = models.CharField(max_length=100)
-    ScoreNivelConhecimento = models.CharField(max_length=100)
-    PerfilInvestidor = models.CharField(max_length=100)
-    RendaMensal = models.CharField(max_length=100)
-    ValorPatrimonio = models.CharField(max_length=100)
-    Pergunta1 = models.CharField(max_length=255)
-    Resposta11 = models.CharField(max_length=255)
-    Pergunta2 = models.CharField(max_length=255)
-    Resposta21 = models.CharField(max_length=255)
-    Pergunta3 = models.CharField(max_length=255)
-    Resposta31 = models.CharField(max_length=255)
-    Pergunta4 = models.CharField(max_length=255)
-    Resposta41 = models.CharField(max_length=255)
-    Pergunta5 = models.CharField(max_length=255)
-    Resposta51 = models.CharField(max_length=255)
-    Resposta52 = models.CharField(max_length=255)
-    Resposta53 = models.CharField(max_length=255)
-    Resposta54 = models.CharField(max_length=255)
-    Resposta55 = models.CharField(max_length=255)
-    Resposta56 = models.CharField(max_length=255)
-    Resposta57 = models.CharField(max_length=255)
-    Resposta58 = models.CharField(max_length=255)
-    Pergunta6 = models.CharField(max_length=255)
-    Resposta61 = models.CharField(max_length=255)
-    Resposta62 = models.CharField(max_length=255)
-    Resposta63 = models.CharField(max_length=255)
-    Resposta64 = models.CharField(max_length=255)
-    Resposta65 = models.CharField(max_length=255)
-    Resposta66 = models.CharField(max_length=255)
-    Resposta67 = models.CharField(max_length=255)
-    Resposta68 = models.CharField(max_length=255)
-    Pergunta7 = models.CharField(max_length=255)
-    Resposta71 = models.CharField(max_length=255)
-    Resposta72 = models.CharField(max_length=255)
-    Resposta73 = models.CharField(max_length=255)
-    Resposta74 = models.CharField(max_length=255)
-    Resposta75 = models.CharField(max_length=255)
-    Pergunta8 = models.CharField(max_length=255)
-    Resposta81 = models.CharField(max_length=255)
-    Pergunta9 = models.CharField(max_length=255)
-    Resposta91 = models.CharField(max_length=255)
-    ScoreRisco = models.CharField(max_length=100)
-    ScoreObjetivos = models.CharField(max_length=100)
-    ScoreSituacaoFinanceira = models.CharField(max_length=100)
-    Produto = models.CharField(max_length=100)
-    NomeDoProduto = models.CharField(max_length=100)
-    NomeEmissor = models.CharField(max_length=100)
-    TaxaCliente = models.CharField(max_length=100)
-    TaxaPreCliente = models.CharField(max_length=100)
-    DescricaoProduto = models.CharField(max_length=100)
-    ValorMinimoAplicaInicial = models.CharField(max_length=100)
-    ValorMinimoAplicacaoAdicional = models.CharField(max_length=100)
-    DataVencimento = models.CharField(max_length=100)
-    FamiliaCarteira = models.CharField(max_length=100)
-    ValorInvestidoAtual = models.CharField(max_length=100)
-    ValorRendimento = models.CharField(max_length=100)
-    Rentabilidade12Meses = models.CharField(max_length=100)
-    RentabilidadeMes = models.CharField(max_length=100)
-    RiscoAtivo = models.CharField(max_length=100)
-    Status = models.CharField(max_length=100)
-    ProdutoId = models.CharField(max_length=100)
 
 
-class PagePath(models.Model):
+@receiver(post_save, sender=Predict, dispatch_uid="predict")  # noqa
+def predict_task(sender, instance, **kwargs):
     """
-    Model contendo dados de acesso das urls
-    da aplicacao
+    Método responsavel por instanciar a task
+    para predizer investimentos do ususario
     """
-    dataId = models.CharField(max_length=100)
-    customerId = models.CharField(max_length=100)
-    pagePath = models.CharField(max_length=255)
-    pageView = models.CharField(max_length=100)
+    data = {
+        'dataId': instance.dataId,
+        'ClienteId': instance.ClienteId,
+        'Idade': instance.Idade,
+        'EstadoCivil': instance.EstadoCivil,
+    }
+    ret = dataPredict(data)
+    return ret
 
 
-class ProductCatalog(models.Model):
+class Result(models.Model):
     """
-    Model contendo dados do catalogo de produto
+    Model com resultado da predicao
     """
-    dataId = models.CharField(max_length=100)
-    AdministradorFundo = models.CharField(max_length=100)
-    AtivoDisponivel = models.CharField(max_length=100)
-    Carencia = models.CharField(max_length=100)
-    CarteiraCNPJ = models.CharField(max_length=100)
-    CNPJAdministrador = models.CharField(max_length=100)
-    DataDeVencimento = models.CharField(max_length=100)
-    DescontoIR = models.CharField(max_length=100)
-    DescricaoAtivo = models.CharField(max_length=100)
-    DescricaoCarencia = models.CharField(max_length=100)
-    DescricaoClasse = models.CharField(max_length=100)
-    DescricaoCotizacaoAplicacao = models.CharField(max_length=100)
-    DescricaoCotizacaoResgate = models.CharField(max_length=100)
-    DescricaoEmissor = models.CharField(max_length=100)
-    DescricaoIndexador = models.CharField(max_length=100)
-    DescricaoIndiceBenchmark = models.CharField(max_length=100)
-    DescricaoLiquidacaoAplicacao = models.CharField(max_length=100)
-    DescricaoLiquidacaoResgate = models.CharField(max_length=100)
-    DescricaoProduto = models.CharField(max_length=100)
-    DescricaoTaxaPerformance = models.CharField(max_length=100)
-    DescricaoTributacaoProduto = models.CharField(max_length=100)
-    DescricaoTributacao = models.CharField(max_length=100)
-    DiasUteisParaResgate = models.CharField(max_length=100)
-    DiasVencimento = models.CharField(max_length=100)
-    FamiliaCarteira = models.CharField(max_length=100)
-    FiltroValorMinimo = models.CharField(max_length=100)
-    GestorFundo = models.CharField(max_length=100)
-    ProdutoId = models.CharField(max_length=100)
-    Inativo = models.CharField(max_length=100)
-    LucroMesAnterior = models.CharField(max_length=100)
-    NDiasCotizacaoAplicacao = models.CharField(max_length=100)
-    NomeAdministrador = models.CharField(max_length=100)
-    NomeCompleto = models.CharField(max_length=100)
-    NomeEmissor = models.CharField(max_length=100)
-    NomeIndexador = models.CharField(max_length=100)
-    NomeInvestimento = models.CharField(max_length=100)
-    NomeProduto = models.CharField(max_length=100)
-    Nome = models.CharField(max_length=100)
-    NrDiasUteisCotizacaoResgate = models.CharField(max_length=100)
-    NrDiasUteisLiqFAplicacao = models.CharField(max_length=100)
-    NrDiasUteisLiqFResgate = models.CharField(max_length=100)
-    PatrimonioLiquidoAtual = models.CharField(max_length=100)
-    PercentualIndexador = models.CharField(max_length=100)
-    PrazoCarencia = models.CharField(max_length=100)
-    PrazoDias = models.CharField(max_length=100)
-    PrecoUnitario = models.CharField(max_length=100)
-    QuantidadeAvaliacoes = models.CharField(max_length=100)
-    QuantidadeConsumida = models.CharField(max_length=100)
-    Rentabilidade12Meses = models.CharField(max_length=100)
-    RentabilidadeAno = models.CharField(max_length=100)
-    RentabilidadeFundoUltimos36Meses = models.CharField(max_length=100)
-    RentabilidadeIndiceBenchmarkAno = models.CharField(max_length=100)
-    RentabilidadeIndiceBenchmarkMes = models.CharField(max_length=100)
-    RentabilidadeIndiceBenchmarkUlt12 = models.CharField(max_length=100)
-    RentabilidadeIndiceBenchmarkUlt36 = models.CharField(max_length=100)
-    RentabilidadeInicioFundo = models.CharField(max_length=100)
-    RentabilidadeMes = models.CharField(max_length=100)
-    RentabilidadeUltimos12Meses = models.CharField(max_length=100)
-    ResgateDias = models.CharField(max_length=100)
-    RiscoAtivo = models.CharField(max_length=100)
-    SaldoMinimoPermanencia = models.CharField(max_length=100)
-    SeFGCAtivo = models.CharField(max_length=100)
-    SeIRAtivo = models.CharField(max_length=100)
-    StatusCarteira = models.CharField(max_length=100)
-    Status = models.CharField(max_length=100)
-    TaxaAdministracaoFixa = models.CharField(max_length=100)
-    TaxaAdministracaoMaxima = models.CharField(max_length=100)
-    TaxaAdministracaoMinima = models.CharField(max_length=100)
-    TaxaAdm = models.CharField(max_length=100)
-    TaxaCliente = models.CharField(max_length=100)
-    TaxaEmissao = models.CharField(max_length=100)
-    TaxaNegociada360 = models.CharField(max_length=100)
-    TaxaPerformance = models.CharField(max_length=100)
-    TaxaPreCliente = models.CharField(max_length=100)
-    TaxaPreEmissao = models.CharField(max_length=100)
-    Taxa = models.CharField(max_length=100)
-    TipoCarteira = models.CharField(max_length=100)
-    TipoCota = models.CharField(max_length=100)
-    TipoIndexador = models.CharField(max_length=100)
-    TipoRegimeCondomonioCVM = models.CharField(max_length=100)
-    Tributacao = models.CharField(max_length=100)
-    ValorMinimoAplicacaoAdicional = models.CharField(max_length=100)
-    ValorMinimoAplicaInicial = models.CharField(max_length=100)
-    ValorMinimoResgate = models.CharField(max_length=100)
-    ValorMinimo = models.CharField(max_length=100)
-    Vencimento = models.CharField(max_length=100)
+    ClienteId = models.CharField(max_length=100)
+    Resultado = models.TextField()

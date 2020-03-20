@@ -2,7 +2,6 @@ sklearn
 pandas
 django
 djangorestframework
-pyzabbix
 seaborn
 matplotlib
 mysqlclient

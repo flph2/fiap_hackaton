@@ -5,31 +5,20 @@ from invest import models
 from invest import serializers
 
 
-class PerfilViewSet(viewsets.ModelViewSet):
+class PredictViewSet(viewsets.ModelViewSet):
     """
-    Metodo de api para exibir todos os
-    dados de perfil de usuario existentes
-    no dataset 1
+    Metodo de api para receber os
+    dados utilizados para sugerir
+    os investimentos do usuario
     """
-    queryset = models.Perfil.objects.all()
-    serializer_class = serializers.PerfilSerializer
+    queryset = models.Predict.objects.all()
+    serializer_class = serializers.PredictSerializer
 
 
-class PagePathViewSet(viewsets.ModelViewSet):
+class ResultViewSet(viewsets.ModelViewSet):
     """
-    Metodo de api para exibir todos os
-    dados de perfil de usuario existentes
-    no dataset 1
+    Metodo com resultado das
+    predicoes de investimento
     """
-    queryset = models.PagePath.objects.all()
-    serializer_class = serializers.PagePathSerializer
-
-
-class ProductCatalogViewSet(viewsets.ModelViewSet):
-    """
-    Metodo de api para exibir todos os
-    dados de perfil de usuario existentes
-    no dataset 1
-    """
-    queryset = models.ProductCatalog.objects.all()
-    serializer_class = serializers.ProductCatalogSerializer
+    queryset = models.Result.objects.all()
+    serializer_class = serializers.ResultSerializer
