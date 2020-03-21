@@ -1,7 +1,3 @@
-
-
-
-
 CREATE TABLE `cli_Clientes` 
 (
   `userid` 					int 	NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -25,11 +21,7 @@ CREATE TABLE `cli_Clientes`
   `scoresituacaofinanceira` double DEFAULT NULL,
   `createddate` 			text,
   `dataclienteefetivado` 	text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-
-
-CREATE INDEX IDX_CLI ON cli_Clientes(userid)
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 insert into cli_Clientes 
