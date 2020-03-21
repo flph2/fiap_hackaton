@@ -24,11 +24,10 @@ def dataPredict(data):
     return ret
 
 
-def modelo(*args):
+def modelo(data_id, cliente_id, idade, estado_civil):
     #  TODO : Implementar modelo
-    teste = []
-    teste.append('Renda fixa com liquidez diaria 1')
-    teste.append('Renda fixa com liquidez diaria 2')
-    teste.append('Renda fixa com liquidez diaria 3')
-    teste.append('Renda fixa com liquidez diaria 4')
+    import pickle
+    regr = pickle.load(open('/data/models/linear', 'rb'))
+    num = len(data_id)
+    teste = regr.predict([[num]])
     return teste
