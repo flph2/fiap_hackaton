@@ -40,6 +40,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-api
+    volumes:
+      - ./data:/root/data/
     ports:
       - "8000:8000"
     networks:

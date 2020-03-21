@@ -8,4 +8,4 @@ COPY api/ /api
 COPY scripts/* /api/scripts/
 COPY modelos/* /data/models/
 RUN chmod 755 /api/scripts/startup.sh
-ENTRYPOINT /api/scripts/startup.sh
+CMD /api/scripts/startup.sh

@@ -5,5 +5,3 @@ djangorestframework
 seaborn
 matplotlib
 mysqlclient
-sqlalchemy
-pymysql
