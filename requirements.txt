@@ -7,3 +7,4 @@ matplotlib
 mysqlclient
 sqlalchemy
 pymysql
+lightfm
