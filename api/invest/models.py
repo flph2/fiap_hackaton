@@ -12,10 +12,11 @@ class Predict(models.Model):
     Model utilizado para predizer os investimentos
     do usuario
     """
-    dataId = models.CharField(max_length=100)
-    ClienteId = models.CharField(max_length=100)
-    Idade = models.CharField(max_length=100)
-    EstadoCivil = models.CharField(max_length=100)
+    userid = models.IntegerField()
+    idade = models.IntegerField()
+    perfilInvestidor = models.IntegerField()
+    scoreSituacaoFinanceira = models.FloatField()
+    scoreNivelConhecimento = models.FloatField()
 
 
 @receiver(post_save, sender=Predict, dispatch_uid="predict")  # noqa
@@ -25,10 +26,11 @@ def predict_task(sender, instance, **kwargs):
     para predizer investimentos do ususario
     """
     data = {
-        'dataId': instance.dataId,
-        'ClienteId': instance.ClienteId,
-        'Idade': instance.Idade,
-        'EstadoCivil': instance.EstadoCivil,
+        'userid': instance.userid,
+        'idade': instance.idade,
+        'perfilInvestidor': instance.perfilInvestidor,
+        'scoreSituacaoFinanceira': instance.scoreSituacaoFinanceira,
+        'scoreNivelConhecimento': instance.scoreNivelConhecimento,
     }
     ret = dataPredict(data)
     return ret
