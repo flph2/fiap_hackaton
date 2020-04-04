@@ -52,7 +52,7 @@ Codigo temporario para utilizar pyspark (spark.py dentro do repo git), copiar no
 
 ### Populando os dados
 Após o processo de up do ambiente para popular os dados basta executar o comando abaixo.
-``
+```
 docker exec -ti api python scripts/populate.py`
 ```
 
