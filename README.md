@@ -1,75 +1,48 @@
-# Projeto Hackaton Fiap
+# FIAP Hackaton - PI Investimentos
 
-## Construindo o ambiente
+## Membros
+Eduardo Siqueira - RM334304 
+Felipe Santos - RM333921
+Felipe Vieira - RM334147
+Paulo Gomes - RM333866
 
-### Requisitos
+## Descrição do Projeto
 
-```
-docker
-docker-compose
-```
+A PI Investimentos nos apresentou um problema relacionado a recomendação de produtos para seus clientes, onde sinalizaram a necessidade de um sistema de recomendação para entender o perfil de sesus clientes e sugerir produtos financeiros mais aderentes a suas necessidades.
 
-### Executando o ambiente pela primeira vez
-dentro do repo git (mesmo diretorio do arquivo docker-compose.yml)
-```
-docker-compose up -d --build
-```
+Alguns pontos (dores) foram sinalizados:
 
-Com isso teremos 2 serviços disponiveis
+ * Muitas opções de produtos
+ * Falta de conhecimento
+ * Falta de direcionamento
 
-Spark notebook - http://localhost:8888
-Mysql database - localhost:3306
+## Proposta
 
-### Acessando pyspark
+Após avaliar algumas alternativas, decidimos utilizar um algortimo de recomendação com abordagem híbrida utilizando "conhecimento" colaborativo e baseado em conteudo.
 
-```
-docker logs spark
-```
-copiar o token e acessar a url http://localhost:8888 e inserir o token na url
+Para isso utilizamos o algoritmo LigthFM fazendo predições baeadas nos dados disponibilizados pela PI.
 
-Codigo temporario para utilizar pyspark (spark.py dentro do repo git), copiar no jupyter notebook
 
-### Populando os dados
-Dentro do notebook (notebooks/felipe_santos.ipynb) existe o passo inicial para fazer ingestão de dados
-via pandas para o mysql, basta executar os passos iniciais do notebook para popular a database
+### Funcionamento da Solução
+Para entregar a solução seguimos os seguintes passos
 
-```
-!pip install sqlalchemy
-!pip install pymysql
-import pandas as pd 
-from sqlalchemy import create_engine
+ * EDA com intuito de entender melhor os dados
+ * Criação de novos Dataset
+   * Normalização e remoção de dados duplicados de Clientes
+   * Normalização Relacionamento entre Produto e Cliente
+   * Normalização e Relacionamento entre Cliente e Respostas
+ * Seleção de Features de Produtos e de Clientes
+ * Criação de matrizes esparsas
+  * Perfil de Cliente
+  * Perfil de Produtos
+ * Criação da matriz de interações entre Clientes e Produtos
+ * Implementação do modelo de Recomendação Híbrida utilizando LightFM
+ * Treinamento dos dados
+ * Export do modelo treinado, features e matrizes necessárias para predição
+ * Desenvolvimento da API para integração do modelo com as APPs da PI Investimentos
+ * Empacotamento em docker para ship em produçao da solução completa.
 
-conn = create_engine("mysql+pymysql://{user}:{pw}@{host}/{db}"
-                       .format(user="root",
-                               pw="123",
-                               host="db",
-                               db="invest"))
 
-perfilCliente = pd.read_csv('Dataset-1.csv')
-pageViews = pd.read_csv('Dataset-2.csv', )
-catProdutos = pd.read_csv('Dataset-3.csv')
-
-catProdutos.to_sql(name='Produtos', con=conn, if_exists = 'replace', index=False)
-perfilCliente.to_sql(name='Clientes', con=conn, if_exists = 'replace', index=False)
-pageViews.to_sql(name='PageViews', con=conn, if_exists = 'replace', index=False)
-```
-
-### Parando o ambiente
-Para finalizar os containers digite:
-```
-docker-compose down
-```
-
-### Troubleshooting
-
-Caso a mensagem recebida seja:
-```
-django.db.utils.OperationalError: (2002, "Can't connect to MySQL server on 'db' (115)")
-```
-Provavelmente o container de spark subiu muito rapido e o banco de dados não estava pronto.
-
-Para resolver remova o container de spark e inicie-o novamente
-```
-docker rm -f spark
-docker-compose up -d --build
-```
+### Documentação de desenvolvimento
+Para iniciar um novo ambiente e desenvolvimento, criando a infra necessária utilize [link]('doc/DEVELOP.md')
+/

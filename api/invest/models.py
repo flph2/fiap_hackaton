@@ -40,5 +40,5 @@ class Result(models.Model):
     """
     Model com resultado da predicao
     """
-    ClienteId = models.CharField(max_length=100)
+    userid = models.IntegerField()
     Resultado = models.TextField()

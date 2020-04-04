@@ -22,3 +22,4 @@ class ResultViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Result.objects.all()
     serializer_class = serializers.ResultSerializer
+    filter_fields = ('userid')

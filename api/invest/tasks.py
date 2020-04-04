@@ -57,7 +57,7 @@ def dataPredict(data):
 
     # Save Result
     from invest.models import Result
-    ret = Result(ClienteId=data['userid'], Resultado=resultado)
+    ret = Result(userid=data['userid'], Resultado=resultado)
     ret.save()
 
 
