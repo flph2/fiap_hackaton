@@ -45,6 +45,23 @@ Para entregar a solução seguimos os seguintes passos
  * Desenvolvimento da API para integração do modelo com as APPs da PI Investimentos
  * Empacotamento em docker para ship em produçao da solução completa.
 
+### Por que utilizar a abordagem Híbrida e o algoritmo lightfm
+Após uma série de testes, identificamos que utilizando uma abordagem puramente colaborativa, temos um problema conhecido como "cold start", onde o principal problema é identificar a necessidade do cliente partindo do principio que ele não integragiu com nenhum produto, não fez nenhuma compra ou não demonstrou interesse prévio a algum item do portifólio.
 
-### Documentação de desenvolvimento
-Para iniciar um novo ambiente e desenvolvimento, criando a infra necessária utilize [link](doc/DEVELOP.md)
+Sendo assim não temos a opção de observar sua preferencia, por isso a abordagem tenta identificar padrões nos perfis de usuario e produtos, baseando-se nessa informaçãode forma a possibilitar uma recomendação mais assertiva e que provavelmente tenha uma maior aderencia a preferencia desse novo usuário
+
+Outra abordagem utilizada é o conceito de "feedback implícito" uma vez que os usuarios que contratam os produtos não os avaliam, mapeando a interação entre o usuario e produto, caracterizada como uma compra.
+
+### Proximos Passos
+Abaixo segue uma lista de itens que gostariamos de desenvolver para incrementar a solução como um todo, no entanto demandaria um maior esforço e não foi possivel concluir em tempo hábil.
+
+ * Recomendação de carteira baseada em nivel de risco do produto
+  * A idéia principal tem o intuito de categorizar produtos vs perfil de clientes criando uma distribuição de carteira baseada em perfil, onde por exemplo um cliente com perfil de investimento Conservador possui 50% de sua carteira em investimentos de baixo risco, 30% em médio e 20% em alto, e essa distribuição é alterada de acordo com o perfil, o modelo de recomendação hibrida é utilizado para recomendar produtos dentro de um perfil de carteira especifico. Dessa forma a recomendação não é apenas quais produtos comprar e sim uma estratégia de médio/longo prazo para aumento de capital de acordo com o risco de cada perfil.
+ * Indentificação de mais features para incrementar o modelo
+ * Uma série historica para acompanhar o rendimento de cada produto recomendado, utilizando por exemplo uma estratégia de "Reinforcement Learning"  e reavaliar se aquela recomendação continua fazendo sentido periódicamente, sinalizando ao cliente momentos em que é interessante sair de um investimento que possui e investir em um novo.
+
+### Entrega do trabalho
+A elaboração do modelo utilizando LightFM e seu resultado estão disponiveis no [notebook](notebooks/lightfm3.ipynb)
+
+### Ambiente
+O processo para iniciar um novo ambiente ou utilizar para ambiente de desenvolvimento, criando a infra necessária está disponivel aqui [link](doc/DEVELOP.md)
