@@ -2,8 +2,11 @@
 
 ## Membros
 Eduardo Siqueira - RM334304 
+
 Felipe Santos - RM333921
+
 Felipe Vieira - RM334147
+
 Paulo Gomes - RM333866
 
 ## Descrição do Projeto
