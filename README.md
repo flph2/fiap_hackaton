@@ -47,5 +47,4 @@ Para entregar a solução seguimos os seguintes passos
 
 
 ### Documentação de desenvolvimento
-Para iniciar um novo ambiente e desenvolvimento, criando a infra necessária utilize [link]('doc/DEVELOP.md')
-/
+Para iniciar um novo ambiente e desenvolvimento, criando a infra necessária utilize [link](doc/DEVELOP.md)
