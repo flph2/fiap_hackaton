@@ -59,6 +59,7 @@ Abaixo segue uma lista de itens que gostariamos de desenvolver para incrementar 
   * A idéia principal tem o intuito de categorizar produtos vs perfil de clientes criando uma distribuição de carteira baseada em perfil, onde por exemplo um cliente com perfil de investimento Conservador possui 50% de sua carteira em investimentos de baixo risco, 30% em médio e 20% em alto, e essa distribuição é alterada de acordo com o perfil, o modelo de recomendação hibrida é utilizado para recomendar produtos dentro de um perfil de carteira especifico. Dessa forma a recomendação não é apenas quais produtos comprar e sim uma estratégia de médio/longo prazo para aumento de capital de acordo com o risco de cada perfil.
  * Indentificação de mais features para incrementar o modelo
  * Uma série historica para acompanhar o rendimento de cada produto recomendado, utilizando por exemplo uma estratégia de "Reinforcement Learning"  e reavaliar se aquela recomendação continua fazendo sentido periódicamente, sinalizando ao cliente momentos em que é interessante sair de um investimento que possui e investir em um novo.
+ * Utilizar PageViews pra incrementar o modelo, utilizando a visão de paginas mais visitadas como input para o processo de feedback implícito
 
 ### Entrega do trabalho
 A elaboração do modelo utilizando LightFM e seu resultado estão disponiveis no [notebook](notebooks/lightfm3.ipynb)
